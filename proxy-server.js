@@ -3,7 +3,7 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // MIME类型映射
 const mimeTypes = {
@@ -170,8 +170,10 @@ function proxyRequest(targetUrl) {
   });
 }
 
-server.listen(PORT, () => {
-  console.log(`
+// 本地开发时启动服务器
+if (process.env.NODE_ENV !== 'production') {
+  server.listen(PORT, () => {
+    console.log(`
 ========================================
   影视网站服务已启动
 ========================================
@@ -185,5 +187,9 @@ server.listen(PORT, () => {
   
   按 Ctrl+C 停止服务
 ========================================
-  `);
-});
+    `);
+  });
+}
+
+// Vercel serverless 导出
+module.exports = server;
