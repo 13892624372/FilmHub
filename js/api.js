@@ -3,62 +3,85 @@
 // ========================================
 
 const API = {
-  // 代理服务器地址
-  proxyUrl: '/api/proxy',
+  // 公共CORS代理服务器列表
+  corsProxies: [
+    'https://corsproxy.io/?',
+    'https://api.allorigins.win/get?url=',
+    'https://api.codetabs.com/v1/proxy?quest='
+  ],
+  
+  // 当前使用的代理索引
+  currentProxyIndex: 0,
   
   // 请求超时时间
-  timeout: 15000,
+  timeout: 10000,
   
   // 发送请求
   async request(apiUrl) {
-    const url = `${this.proxyUrl}?url=${encodeURIComponent(apiUrl)}`;
-    
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), this.timeout);
+    // 尝试所有代理
+    for (let i = 0; i < this.corsProxies.length; i++) {
+      const proxyIndex = (this.currentProxyIndex + i) % this.corsProxies.length;
+      const proxyUrl = this.corsProxies[proxyIndex];
+      const url = `${proxyUrl}${encodeURIComponent(apiUrl)}`;
       
-      const response = await fetch(url, {
-        method: 'GET',
-        signal: controller.signal,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-      
-      clearTimeout(timeoutId);
-      
-      const text = await response.text();
-      
-      // 尝试解析JSON
       try {
-        const data = JSON.parse(text);
-        // 如果返回的是错误对象
-        if (data.code === 0 && data.msg && data.msg.includes('请求失败')) {
-          console.warn('API返回错误:', data.msg);
+        console.log(`尝试代理 ${proxyIndex + 1}/${this.corsProxies.length}: ${proxyUrl.substring(0, 30)}...`);
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), this.timeout);
+        
+        const response = await fetch(url, {
+          method: 'GET',
+          signal: controller.signal,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
         }
-        return data;
-      } catch (e) {
-        // 如果不是JSON，返回空数据
-        console.warn('返回数据不是JSON格式:', text.substring(0, 100));
-        return {
-          code: 0,
-          msg: '数据格式错误',
-          list: [],
-          class: []
-        };
+        
+        const text = await response.text();
+        
+        // 尝试解析JSON
+        try {
+          let data = JSON.parse(text);
+          
+          // allorigins 返回的数据在 contents 字段中
+          if (proxyUrl.includes('allorigins') && data.contents) {
+            data = JSON.parse(data.contents);
+          }
+          
+          // 如果成功，记住这个代理
+          this.currentProxyIndex = proxyIndex;
+          console.log('✓ 代理请求成功');
+          
+          return data;
+        } catch (e) {
+          console.warn('返回数据不是JSON格式:', text.substring(0, 100));
+          return {
+            code: 0,
+            msg: '数据格式错误',
+            list: [],
+            class: []
+          };
+        }
+      } catch (error) {
+        console.warn(`代理 ${proxyIndex + 1} 失败:`, error.message);
+        continue;
       }
-    } catch (error) {
-      if (error.name === 'AbortError') {
-        throw new Error('请求超时，请检查网络连接');
-      }
-      console.error('API请求错误:', error);
-      return {
-        code: 0,
-        msg: '请求失败: ' + error.message,
-        list: [],
-        class: []
-      };
     }
+    
+    console.error('所有代理都不可用');
+    return {
+      code: 0,
+      msg: '所有代理都不可用，请稍后重试',
+      list: [],
+      class: []
+    };
   },
   
   // 获取影视列表
