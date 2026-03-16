@@ -3,53 +3,16 @@
 // ========================================
 
 const API = {
-  // CORS代理服务器地址列表
-  corsProxies: [
-    'https://api.allorigins.win/get?url=',
-    'https://corsproxy.io/?',
-    'https://api.codetabs.com/v1/proxy?quest='
-  ],
-  
-  // 当前使用的代理索引
-  currentProxyIndex: 0,
-  
-  // 获取当前代理URL
-  get proxyUrl() {
-    return this.corsProxies[this.currentProxyIndex];
-  },
-  
-  // 切换到下一个代理
-  switchProxy() {
-    this.currentProxyIndex = (this.currentProxyIndex + 1) % this.corsProxies.length;
-    console.log('切换到CORS代理:', this.proxyUrl);
-  },
+  // 代理服务器地址
+  proxyUrl: '/api/proxy',
   
   // 请求超时时间
-  timeout: 20000,
+  timeout: 15000,
   
   // 发送请求
   async request(apiUrl) {
-    // 尝试所有代理
-    for (let i = 0; i < this.corsProxies.length; i++) {
-      const proxyUrl = this.corsProxies[(this.currentProxyIndex + i) % this.corsProxies.length];
-      const url = `${proxyUrl}${encodeURIComponent(apiUrl)}`;
-      
-      try {
-        const result = await this.tryRequest(url);
-        // 如果成功，更新当前代理索引
-        this.currentProxyIndex = (this.currentProxyIndex + i) % this.corsProxies.length;
-        return result;
-      } catch (error) {
-        console.warn(`代理 ${proxyUrl} 请求失败:`, error.message);
-        continue;
-      }
-    }
+    const url = `${this.proxyUrl}?url=${encodeURIComponent(apiUrl)}`;
     
-    throw new Error('所有CORS代理都不可用');
-  },
-  
-  // 尝试单个请求
-  async tryRequest(url) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), this.timeout);
@@ -94,7 +57,7 @@ const API = {
         msg: '请求失败: ' + error.message,
         list: [],
         class: []
-      }
+      };
     }
   },
   
