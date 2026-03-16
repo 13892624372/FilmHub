@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>影视大全 - 在线观看</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile.css" media="screen and (max-width: 768px)">
+</head>
+<body>
+  <!-- 头部导航 -->
+  <header class="header">
+    <div class="header-content">
+      <a href="#/" class="logo">🎬 影视大全</a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#/" class="nav-item active">首页</a>
+        <a href="#/movie" class="nav-item">电影</a>
+        <a href="#/tv" class="nav-item">电视剧</a>
+        <a href="#/variety" class="nav-item">综艺</a>
+        <a href="#/anime" class="nav-item">动漫</a>
+      </nav>
+      <div class="header-right">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="搜索影视..." autocomplete="off">
+          <button id="searchBtn">🔍</button>
+          <!-- 搜索历史下拉框 -->
+          <div class="search-history" id="searchHistory">
+            <div class="search-history-header">
+              <span>🔍 最近搜索</span>
+              <button class="clear-history" id="clearHistory">清空</button>
+            </div>
+            <div class="search-history-list" id="searchHistoryList">
+              <!-- 动态加载搜索记录 -->
+            </div>
+            <div class="search-history-more" id="searchHistoryMore" style="display: none;">
+              <button class="show-more-btn" id="showMoreHistory">展开更多 ▼</button>
+            </div>
+          </div>
+        </div>
+        <button class="source-btn" id="sourceBtn">⚙️ 数据源</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 移动端菜单 -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#/">首页</a>
+    <a href="#/movie">电影</a>
+    <a href="#/tv">电视剧</a>
+    <a href="#/variety">综艺</a>
+    <a href="#/anime">动漫</a>
+    <a href="#/source">数据源设置</a>
+  </div>
+
+  <!-- 主内容区 -->
+  <main class="main-content" id="mainContent">
+    <!-- 动态加载内容 -->
+  </main>
+
+  <!-- 数据源管理弹窗 -->
+  <div class="modal" id="sourceModal">
+    <div class="modal-content">
+      <button class="close-btn floating" id="closeModal">&times;</button>
+      <div class="modal-header">
+        <h2>📡 数据源管理</h2>
+      </div>
+      <div class="modal-body">
+        <div class="current-source">
+          <h3>当前数据源</h3>
+          <select id="currentSourceSelect">
+            <option value="">请选择数据源</option>
+          </select>
+        </div>
+        <div class="source-list">
+          <h3>已配置的数据源</h3>
+          <div id="sourceList"></div>
+        </div>
+        <div class="add-source">
+          <h3>添加新数据源</h3>
+          <div class="form-group">
+            <label>数据源名称</label>
+            <input type="text" id="newSourceName" placeholder="例如：视频源1">
+          </div>
+          <div class="form-group">
+            <label>接口地址</label>
+            <input type="text" id="newSourceUrl" placeholder="例如：https://api.example.com/api.php/provide/vod/">
+          </div>
+          <button class="btn-primary" id="addSourceBtn">添加数据源</button>
+        </div>
+        <div class="source-help">
+          <h3>💡 使用说明</h3>
+          <p><strong>1. 数据源格式：</strong></p>
+          <p style="margin-left: 15px; color: var(--success-color);">https://域名/api.php/provide/vod/</p>
+          <p><strong>2. 示例地址：</strong></p>
+          <p style="margin-left: 15px;">• https://api.apibdzy.com/api.php/provide/vod/</p>
+          <p style="margin-left: 15px;">• https://cj.lziplayer.com/api.php/provide/vod/</p>
+          <p><strong>3. 注意事项：</strong></p>
+          <p style="margin-left: 15px;">• 地址必须以 http:// 或 https:// 开头</p>
+          <p style="margin-left: 15px;">• 地址必须包含 api.php/provide/vod</p>
+          <p style="margin-left: 15px;">• 添加后会自动测试数据源是否可用</p>
+        </div>
+        <div class="add-source" style="margin-top: 20px; background-color: #2a1a1a;">
+          <h3>⚠️ 重置数据源</h3>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">如果数据源出现问题，可以重置为默认数据源</p>
+          <button class="btn-primary" id="resetSourceBtn" style="background-color: #ff4444;">重置为默认数据源</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 加载动画 -->
+  <div class="loading" id="loading">
+    <div class="loading-spinner"></div>
+    <p>加载中...</p>
+  </div>
+
+  <!-- 提示消息 -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</body>
+</html>

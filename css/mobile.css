@@ -1,0 +1,304 @@
+/* ========================================
+   影视网站 - 移动端样式
+   ======================================== */
+
+/* 隐藏PC端导航，显示移动端菜单按钮 */
+.nav-menu {
+  display: none;
+}
+
+.mobile-menu-btn {
+  display: block;
+}
+
+.header-content {
+  padding: 12px 15px;
+}
+
+.logo {
+  font-size: 18px;
+}
+
+.search-box {
+  display: none;
+}
+
+.source-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* 主内容区调整 */
+.main-content {
+  padding: 80px 15px 30px;
+}
+
+/* 分类导航 */
+.category-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.category-list {
+  gap: 8px;
+}
+
+.category-item {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* 影视列表 - 移动端网格 */
+.video-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.video-card {
+  border-radius: 8px;
+}
+
+.video-badge {
+  top: 5px;
+  right: 5px;
+  padding: 2px 5px;
+  font-size: 10px;
+}
+
+.video-remarks {
+  padding: 15px 5px 5px;
+  font-size: 10px;
+}
+
+.video-info {
+  padding: 8px;
+}
+
+.video-title {
+  font-size: 12px;
+  -webkit-line-clamp: 1;
+}
+
+.video-meta {
+  display: none;
+}
+
+/* 分页 */
+.pagination {
+  gap: 5px;
+  margin-top: 30px;
+}
+
+.page-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+  min-width: 35px;
+}
+
+.page-info {
+  font-size: 12px;
+}
+
+/* 详情页 - 移动端布局 */
+.detail-container {
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.detail-poster {
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.detail-info h1 {
+  font-size: 22px;
+  text-align: center;
+}
+
+.detail-meta {
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.detail-meta span {
+  padding: 4px 10px;
+}
+
+.detail-desc {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.detail-actions {
+  justify-content: center;
+}
+
+.btn-play,
+.btn-favorite {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* 播放源和选集 */
+.source-section h3 {
+  font-size: 16px;
+}
+
+.source-tabs {
+  gap: 8px;
+}
+
+.source-tab {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.episode-grid {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.episode-btn {
+  padding: 8px 5px;
+  font-size: 12px;
+}
+
+/* 播放页 */
+.player-container {
+  border-radius: 0;
+  margin: 0 -15px 20px;
+}
+
+.player-info h2 {
+  font-size: 18px;
+}
+
+.player-info p {
+  font-size: 13px;
+}
+
+/* 弹窗 */
+.modal-content {
+  max-height: 85vh;
+  margin: 0 10px;
+}
+
+.modal-header {
+  padding: 15px;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+}
+
+.modal-body {
+  padding: 15px;
+}
+
+.source-item {
+  padding: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.source-item-info h4 {
+  font-size: 13px;
+}
+
+.source-item-info p {
+  font-size: 11px;
+}
+
+.source-item-actions {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.add-source {
+  padding: 15px;
+}
+
+.form-group input {
+  padding: 10px;
+  font-size: 13px;
+}
+
+.btn-primary {
+  padding: 10px;
+}
+
+.source-help {
+  padding: 15px;
+}
+
+.source-help p {
+  font-size: 12px;
+}
+
+/* 加载动画 */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+}
+
+/* 提示消息 */
+.toast {
+  left: 15px;
+  right: 15px;
+  transform: translateY(100px);
+  text-align: center;
+}
+
+.toast.active {
+  transform: translateY(0);
+}
+
+/* 空状态 */
+.empty-state {
+  padding: 60px 20px;
+}
+
+.empty-state-icon {
+  font-size: 48px;
+}
+
+.empty-state h3 {
+  font-size: 18px;
+}
+
+/* 搜索页 */
+.search-header h2 {
+  font-size: 16px;
+}
+
+/* 超小屏幕适配 */
+@media (max-width: 375px) {
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .episode-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+}
+
+/* 横屏模式 */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header {
+    position: relative;
+  }
+
+  .main-content {
+    padding-top: 20px;
+  }
+
+  .mobile-menu {
+    top: 50px;
+  }
+}

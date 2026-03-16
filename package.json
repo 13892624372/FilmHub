@@ -1,0 +1,13 @@
+{
+  "name": "video-website",
+  "version": "1.0.0",
+  "description": "影视网站 - 纯前端项目",
+  "main": "proxy-server.js",
+  "scripts": {
+    "start": "node proxy-server.js",
+    "dev": "node proxy-server.js"
+  },
+  "dependencies": {
+    "http-proxy-middleware": "^2.0.6"
+  }
+}
