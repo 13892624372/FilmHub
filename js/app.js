@@ -20,15 +20,15 @@ const App = {
   // 预配置的默认数据源
   defaultSources: [
     {
-      id: 1001,
-      name: '量子资源',
-      url: 'https://cj.lziplayer.com/api.php/provide/vod/',
-      categories: []
-    },
-    {
       id: 1002,
       name: '百度资源',
       url: 'https://api.apibdzy.com/api.php/provide/vod/',
+      categories: []
+    },
+    {
+      id: 1001,
+      name: '量子资源',
+      url: 'https://cj.lziplayer.com/api.php/provide/vod/',
       categories: []
     },
     {

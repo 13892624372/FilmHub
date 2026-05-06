@@ -9,16 +9,16 @@
 }
 
 :root {
-  --primary-color: #e50914;
-  --primary-hover: #f40612;
-  --bg-dark: #0f0f0f;
-  --bg-card: #1a1a1a;
-  --bg-hover: #2a2a2a;
-  --text-primary: #ffffff;
-  --text-secondary: #b3b3b3;
-  --text-muted: #666666;
-  --border-color: #333333;
-  --success-color: #46d369;
+  --primary-color: #5d85ab;
+  --primary-hover: #4a6d8f;
+  --bg-dark: #eae5e5;
+  --bg-card: #fcf9f9;
+  --bg-hover: #f0ebeb;
+  --text-primary: #333333;
+  --text-secondary: #555555;
+  --text-muted: #777777;
+  --border-color: #cccccc;
+  --success-color: #47c266;
   --warning-color: #ffa500;
 }
 
@@ -95,13 +95,14 @@ body {
    ======================================== */
 
 .header {
-  background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .header-content {
@@ -160,7 +161,7 @@ body {
 .search-box {
   display: flex;
   align-items: center;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(0,0,0,0.05);
   border-radius: 25px;
   padding: 5px 15px;
   transition: background-color 0.3s;
@@ -168,7 +169,7 @@ body {
 }
 
 .search-box:focus-within {
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(0,0,0,0.1);
 }
 
 .search-box input {
@@ -187,7 +188,7 @@ body {
 .search-box button {
   background: none;
   border: none;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   cursor: pointer;
   font-size: 16px;
 }
@@ -201,11 +202,11 @@ body {
   top: calc(100% + 10px);
   left: 0;
   right: 0;
-  background-color: rgba(30, 30, 30, 0.95);
+  background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 15px;
   z-index: 1001;
   display: none;
@@ -234,7 +235,7 @@ body {
   align-items: center;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .search-history-header span {
@@ -256,7 +257,7 @@ body {
 
 .clear-history:hover {
   color: var(--primary-color);
-  background-color: rgba(229, 9, 20, 0.1);
+  background-color: rgba(93, 133, 171, 0.1);
 }
 
 .search-history-list {
@@ -285,7 +286,7 @@ body {
 }
 
 .search-history-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .search-history-item .history-text {
@@ -327,13 +328,13 @@ body {
 
 .search-history-item .delete-btn:hover {
   color: var(--primary-color);
-  background-color: rgba(229, 9, 20, 0.1);
+  background-color: rgba(93, 133, 171, 0.1);
 }
 
 .search-history-more {
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -351,7 +352,7 @@ body {
 
 .show-more-btn:hover {
   color: var(--text-primary);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .search-history-empty {
@@ -401,10 +402,10 @@ body {
   top: 60px;
   left: 0;
   right: 0;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-card);
   z-index: 999;
   padding: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
 .mobile-menu.active {
@@ -536,10 +537,10 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
   padding: 20px 10px 10px;
   font-size: 12px;
-  color: var(--success-color);
+  color: #46d369;
 }
 
 .video-info {
@@ -804,7 +805,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.5);
   z-index: 2000;
   justify-content: center;
   align-items: center;
@@ -830,6 +831,7 @@ body {
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid var(--border-color);
+  background-color: #f5f5f5;
 }
 
 .modal-header h2 {
@@ -853,7 +855,7 @@ body {
 
 .close-btn:hover {
   color: var(--text-primary);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* 悬浮关闭按钮样式 - 固定在弹窗右上角，不随滚动 */
@@ -862,15 +864,15 @@ body {
   top: 50%;
   right: 50%;
   transform: translate(calc(300px - 15px), calc(-45vh + 15px));
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 2001;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .close-btn.floating:hover {
-  background-color: rgba(229, 9, 20, 0.9);
+  background-color: var(--primary-color);
   color: white;
   border-color: transparent;
   transform: translate(calc(300px - 15px), calc(-45vh + 15px)) rotate(90deg);
@@ -902,7 +904,7 @@ body {
 .current-source select {
   width: 100%;
   padding: 12px;
-  background-color: var(--bg-dark);
+  background-color: #f5f5f5;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -917,7 +919,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--bg-dark);
+  background-color: #f5f5f5;
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -960,7 +962,7 @@ body {
 }
 
 .add-source {
-  background-color: var(--bg-dark);
+  background-color: #f5f5f5;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 25px;
@@ -980,7 +982,7 @@ body {
 .form-group input {
   width: 100%;
   padding: 12px;
-  background-color: var(--bg-card);
+  background-color: #ffffff;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -1009,7 +1011,7 @@ body {
 }
 
 .source-help {
-  background-color: var(--bg-dark);
+  background-color: #f5f5f5;
   padding: 20px;
   border-radius: 8px;
 }
@@ -1039,7 +1041,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(255,255,255,0.9);
   z-index: 3000;
   justify-content: center;
   align-items: center;
@@ -1054,7 +1056,7 @@ body {
 .loading-spinner {
   width: 50px;
   height: 50px;
-  border: 4px solid var(--border-color);
+  border: 4px solid #dddddd;
   border-top-color: var(--primary-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -1086,7 +1088,7 @@ body {
   z-index: 4000;
   opacity: 0;
   transition: all 0.3s;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
 
 .toast.active {
